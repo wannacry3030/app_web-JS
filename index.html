@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script>
+      const form = document.querySelector("form");
+      const inputTitle = document.querySelector("#inputTitle");
+      const inputBody = document.querySelector("#inputBody");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const post = {
+          title: inputTitle.value,
+          body: inputBody.value,
+        };
+
+        console.log(post);
+      });
+    </script>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="inputTitle">Título:</label>
+        <input type="text" id="inputTitle" />
+      </div>
+      <div>
+        <label for="inputBody">Conteúdo:</label>
+        <textarea id="inputBody"></textarea>
+      </div>
+      <button type="submit">Salvar</button>
+    </form>
+  </body>
+</html>

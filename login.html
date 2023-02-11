@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script>
+      const form = document.querySelector("form");
+      const emailInput = document.querySelector("#email");
+      const passwordInput = document.querySelector("#password");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        console.log(`Email: ${email}, Senha: ${password}`);
+      });
+    </script>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" />
+      </div>
+      <div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" />
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+  </body>
+</html>
