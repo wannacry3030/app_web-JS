@@ -6,25 +6,40 @@
   </head>
   <body>
     <h1>Criação de Postagem</h1>
-    <form id="create-post-form">
-      <label for="title">Título:</label>
-      <input type="text" id="title" name="title" required />
-
-      <label for="content">Conteúdo:</label>
-      <textarea id="content" name="content" required></textarea>
-
+    <form action="#" method="post">
+      <input
+        type="text"
+        id="titulo"
+        name="titulo"
+        placeholder="Título da postagem"
+      />
+      <input
+        type="text"
+        id="conteudo"
+        name="conteudo"
+        placeholder="Conteúdo da postagem"
+      />
       <input type="submit" value="Criar" />
     </form>
-
     <script>
-      const form = document.getElementById("create-post-form");
+      const form = document.querySelector("#form-post");
       form.addEventListener("submit", (event) => {
         event.preventDefault();
+        const titulo = document.querySelector("#titulo").value;
+        const conteudo = document.querySelector("#conteudo").value;
 
-        const title = form.elements.title.value;
-        const content = form.elements.content.value;
-
-        // Enviar as informações para a API aqui para criar uma nova postagem
+        fetch("/postagens", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ titulo, conteudo }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data.message);
+            form.reset();
+          });
       });
     </script>
   </body>
