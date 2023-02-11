@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Criação de Postagem</title>
+  </head>
+  <body>
+    <h1>Criação de Postagem</h1>
+    <form id="create-post-form">
+      <label for="title">Título:</label>
+      <input type="text" id="title" name="title" required />
+
+      <label for="content">Conteúdo:</label>
+      <textarea id="content" name="content" required></textarea>
+
+      <input type="submit" value="Criar" />
+    </form>
+
+    <script>
+      const form = document.getElementById("create-post-form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const title = form.elements.title.value;
+        const content = form.elements.content.value;
+
+        // Enviar as informações para a API aqui para criar uma nova postagem
+      });
+    </script>
+  </body>
+</html>

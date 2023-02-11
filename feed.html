@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script>
+      const posts = [
+        { id: 1, title: "Post 1", body: "Conteúdo do post 1" },
+        { id: 2, title: "Post 2", body: "Conteúdo do post 2" },
+        { id: 3, title: "Post 3", body: "Conteúdo do post 3" },
+      ];
+
+      const postsContainer = document.querySelector("#posts");
+
+      posts.forEach((post) => {
+        const postElement = document.createElement("div");
+        postElement.innerHTML = `
+          <h3>${post.title}</h3>
+          <p>${post.body}</p>
+        `;
+        postsContainer.appendChild(postElement);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="posts"></div>
+  </body>
+</html>
