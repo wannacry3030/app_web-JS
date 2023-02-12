@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Criação de Postagem</title>
+  </head>
+  <body>
+    <h1>Criação de Postagem</h1>
+    <form action="http://localhost:5000/postagens" method="post">
+      <input type="text" name="titulo" placeholder="Título da postagem" />
+      <input type="text" name="conteudo" placeholder="Conteúdo da postagem" />
+      <input type="submit" value="Criar" />
+    </form>
+
+    <script>
+      async function createPost() {
+        const title = document.getElementById("title").value;
+        const content = document.getElementById("content").value;
+
+        const response = await fetch("http://localhost:5000/postagens", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, content }),
+        });
+
+        if (response.ok) {
+          alert("Postagem criada com sucesso!");
+        } else {
+          alert("Erro ao criar postagem.");
+        }
+      }
+    </script>
+  </body>
+</html>
