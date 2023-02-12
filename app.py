@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 import bcrypt
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client["web-app"]
@@ -23,15 +26,16 @@ def criar_post():
 
 @app.route("/usuarios", methods=["POST"])
 def criar_usuario():
-    print(request.form)
-    email = request.form["email"]
-    senha = request.form["senha"].encode("utf-8")
+    dados = request.get_json()
+    email = dados["email"]
+    senha = dados["password"].encode("utf-8")
     hash_senha = bcrypt.hashpw(senha, bcrypt.gensalt())
     
     usuario = {"email": email, "senha": hash_senha}
     users_collection.insert_one(usuario)
 
     return jsonify({"message": "Usuário criado com sucesso!"})
+
 
 @app.route("/login", methods=["POST"])
 def fazer_login():
