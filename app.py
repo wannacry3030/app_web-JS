@@ -12,6 +12,7 @@ db = client["web-app"]
 posts_collection = db["postagens"]
 users_collection = db["usuarios"]
 
+#PARTE1, CRIAÇÃO DE POSTS (FUNCIONANDO)
 @app.route("/postagens", methods=["POST"])
 def criar_post():
     titulo = request.form["titulo"]
@@ -22,7 +23,7 @@ def criar_post():
 
     return jsonify({"message": "Post criado com sucesso!"})
 
-#parte 2, login e criação de conta
+#parte 2, criação de conta (FUNCIONANDO)
 
 @app.route("/usuarios", methods=["POST"])
 def criar_usuario():
@@ -36,6 +37,7 @@ def criar_usuario():
 
     return jsonify({"message": "Usuário criado com sucesso!"})
 
+#PARTE 3, LOGIN (nok)
 
 @app.route("/login", methods=["POST"])
 def fazer_login():
