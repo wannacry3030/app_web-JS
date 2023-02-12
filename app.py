@@ -23,6 +23,7 @@ def criar_post():
 
 @app.route("/usuarios", methods=["POST"])
 def criar_usuario():
+    print(request.form)
     email = request.form["email"]
     senha = request.form["senha"].encode("utf-8")
     hash_senha = bcrypt.hashpw(senha, bcrypt.gensalt())
