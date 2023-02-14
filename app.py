@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response, redirect
 from pymongo import MongoClient
 import bcrypt
 from flask_cors import CORS
+
 
 app = Flask(__name__)
 CORS(app)
@@ -48,7 +49,8 @@ def fazer_login():
 
     if usuario:
         if bcrypt.checkpw(senha, usuario["senha"]):
-            return jsonify({"message": "Login efetuado com sucesso!"})
+            resp = make_response(redirect('/criar_post.html'))
+            return resp
         else:
             return jsonify({"message": "Senha incorreta. Tente novamente."})
     else:
