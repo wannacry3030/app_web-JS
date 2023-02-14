@@ -42,16 +42,17 @@ def criar_usuario():
 
 @app.route("/login", methods=["POST"])
 def fazer_login():
-    email = request.form["email"]
-    senha = request.form["senha"].encode("utf-8")
+    dados = request.get_json()
+    email = dados["email"]
+    senha = dados["password"].encode("utf-8")
     
     usuario = users_collection.find_one({"email": email})
 
     if usuario:
         if bcrypt.checkpw(senha, usuario["senha"]):
-            resp = make_response(redirect('/criar_post.html'))
-            return resp
+            return jsonify({"message": "Login realizado com sucesso!"})
         else:
             return jsonify({"message": "Senha incorreta. Tente novamente."})
     else:
         return jsonify({"message": "Usuário não encontrado."})
+
